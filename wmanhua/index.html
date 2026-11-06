@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>w漫画-在线漫画阅读平台_免费漫画大全_热门漫画推荐</title>
+<meta name="description" content="w漫画是在线漫画阅读平台，提供免费漫画大全与热门漫画推荐，涵盖热血、恋爱、奇幻、悬疑等多种题材，支持在线浏览与分类查找。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1f3b'/%3E%3Cpath d='M16 20h8l4 16 4-16h8l-8 26h-8z' fill='%23ff7a45'/%3E%3Ccircle cx='46' cy='22' r='5' fill='%23ffd166'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#1b1f3b;
+    --ink-soft:#41476b;
+    --paper:#f7f6f2;
+    --card:#ffffff;
+    --line:#e3e1da;
+    --accent:#ff7a45;
+    --accent-deep:#e2571f;
+    --gold:#ffd166;
+    --radius:16px;
+    --max:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 22px;}
+
+  /* header */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,246,242,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .bar{display:flex;align-items:center;gap:26px;min-height:68px;}
+  .logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .logo .mark{width:38px;height:38px;flex-shrink:0;}
+  .logo .brand{
+    font-size:1.24rem;font-weight:800;letter-spacing:.5px;color:var(--ink);
+    white-space:nowrap;
+  }
+  nav.main{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;}
+  nav.main a{
+    font-size:.94rem;color:var(--ink-soft);padding:8px 12px;border-radius:10px;
+    transition:background .2s,color .2s;
+  }
+  nav.main a:hover,nav.main a:focus-visible{background:#efece4;color:var(--ink);}
+  .menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:10px;padding:7px 10px;cursor:pointer;color:var(--ink);}
+
+  /* hero */
+  .hero{padding:56px 0 40px;position:relative;overflow:hidden;}
+  .hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.82rem;letter-spacing:1.5px;color:var(--accent-deep);
+    background:#ffece2;border-radius:999px;padding:5px 14px;font-weight:600;
+  }
+  h1{
+    font-size:clamp(2rem,4.4vw,3rem);
+    line-height:1.18;font-weight:850;letter-spacing:1px;
+    margin:18px 0 16px;
+  }
+  h1 .hl{
+    background:linear-gradient(transparent 62%,var(--gold) 62%);
+    padding:0 2px;
+  }
+  .lead{font-size:1.03rem;color:var(--ink-soft);max-width:34em;}
+  .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 24px;border-radius:12px;font-weight:700;font-size:.96rem;
+    transition:transform .18s,box-shadow .18s,background .18s;
+  }
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 18px rgba(255,122,69,.32);}
+  .btn-primary:hover{background:var(--accent-deep);transform:translateY(-2px);}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line);}
+  .btn-ghost:hover{background:#f1eee7;transform:translateY(-2px);}
+  .hero-art{position:relative;}
+  .hero-art .frame{
+    background:var(--ink);border-radius:24px;padding:18px;
+    box-shadow:0 24px 50px -22px rgba(27,31,59,.55);
+  }
+  .hero-art .frame svg{border-radius:14px;width:100%;height:auto;}
+  .badge-float{
+    position:absolute;bottom:-14px;left:-10px;background:#fff;border:1px solid var(--line);
+    border-radius:14px;padding:9px 16px;font-size:.82rem;font-weight:700;color:var(--ink);
+    box-shadow:0 10px 24px -14px rgba(0,0,0,.3);
+  }
+
+  /* section basics */
+  section{padding:52px 0;}
+  .sec-head{margin-bottom:28px;}
+  .sec-head .kicker{font-size:.8rem;letter-spacing:2px;color:var(--accent-deep);font-weight:700;}
+  h2{font-size:clamp(1.35rem,2.4vw,1.75rem);font-weight:800;margin-top:6px;letter-spacing:.5px;}
+  .sec-head p{color:var(--ink-soft);margin-top:8px;max-width:44em;font-size:.96rem;}
+
+  /* genre chips */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;}
+  .chip{
+    background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:8px 18px;font-size:.9rem;color:var(--ink-soft);font-weight:600;
+    cursor:pointer;transition:all .18s;
+  }
+  .chip:hover{border-color:var(--accent);color:var(--accent-deep);}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  /* filter row */
+  .searchbar{display:flex;gap:12px;margin:22px 0 6px;flex-wrap:wrap;}
+  .searchbar input{
+    flex:1;min-width:220px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);
+    font-size:.95rem;background:#fff;color:var(--ink);outline:none;
+  }
+  .searchbar input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,122,69,.16);}
+  .searchbar .btn-primary{padding:12px 22px;border:none;cursor:pointer;font-family:inherit;}
+
+  /* cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:26px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 34px -20px rgba(27,31,59,.45);}
+  .card .cover{height:132px;position:relative;overflow:hidden;}
+  .card .cover svg{width:100%;height:100%;}
+  .card .body{padding:16px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card h3{font-size:1.06rem;font-weight:800;letter-spacing:.3px;}
+  .card .meta{font-size:.78rem;color:#8a8fa8;letter-spacing:.5px;}
+  .card p{font-size:.9rem;color:var(--ink-soft);flex:1;}
+  .card .tag{
+    align-self:flex-start;font-size:.74rem;font-weight:700;color:var(--accent-deep);
+    background:#ffece2;border-radius:6px;padding:2px 9px;
+  }
+  .hidden{display:none !important;}
+  .empty-note{color:var(--ink-soft);font-size:.92rem;margin-top:18px;}
+
+  /* feature list */
+  .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .feature{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;display:flex;gap:16px;
+  }
+  .feature .ic{
+    width:44px;height:44px;flex-shrink:0;border-radius:12px;
+    background:#ffece2;display:grid;place-items:center;
+  }
+  .feature h3{font-size:1rem;font-weight:800;margin-bottom:4px;}
+  .feature p{font-size:.9rem;color:var(--ink-soft);}
+
+  /* reading path / prose block */
+  .prose{
+    background:#fff;border:1px solid var(--line);border-radius:20px;
+    padding:34px 36px;
+  }
+  .prose p{color:var(--ink-soft);font-size:.96rem;margin-bottom:16px;}
+  .prose p:last-child{margin-bottom:0;}
+  .prose strong{color:var(--ink);}
+  .prose h2{margin-bottom:14px;}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px;}
+  .stat{background:var(--ink);color:#fff;border-radius:var(--radius);padding:22px 20px;text-align:center;}
+  .stat .num{font-size:1.6rem;font-weight:850;color:var(--gold);line-height:1.2;}
+  .stat .lbl{font-size:.82rem;opacity:.82;margin-top:4px;letter-spacing:.5px;}
+
+  /* download strip */
+  .dl{
+    display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+    background:linear-gradient(120deg,#1b1f3b,#2d3566);
+    color:#fff;border-radius:22px;padding:32px 36px;
+  }
+  .dl .txt{flex:1;min-width:240px;}
+  .dl h2{color:#fff;margin:0 0 8px;}
+  .dl p{font-size:.92rem;opacity:.85;}
+  .dl .btn-dl{
+    background:var(--accent);color:#fff;border-radius:12px;padding:12px 28px;
+    font-weight:800;font-size:.96rem;display:inline-flex;align-items:center;gap:8px;
+    pointer-events:none;opacity:.9;
+  }
+
+  /* faq */
+  details{
+    background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:16px 20px;margin-bottom:12px;
+  }
+  details summary{
+    cursor:pointer;font-weight:700;font-size:.96rem;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  details summary::-webkit-details-marker{display:none;}
+  details summary::after{content:"+";font-size:1.2rem;color:var(--accent);font-weight:700;}
+  details[open] summary::after{content:"–";}
+  details p{font-size:.9rem;color:var(--ink-soft);margin-top:10px;}
+
+  /* footer */
+  footer.site{
+    background:#1b1f3b;color:#b9bdd4;margin-top:40px;padding:40px 0 28px;
+  }
+  footer .fgrid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;}
+  footer .fbrand{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:.5px;}
+  footer .fbrand span{color:var(--gold);}
+  footer p{font-size:.84rem;line-height:1.9;max-width:30em;margin-top:8px;}
+  footer nav{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.86rem;}
+  footer nav a:hover{color:#fff;}
+  .copy{border-top:1px solid rgba(255,255,255,.12);margin-top:26px;padding-top:18px;font-size:.8rem;opacity:.65;}
+
+  @media(max-width:900px){
+    .hero .grid{grid-template-columns:1fr;gap:32px;}
+    .hero-art{order:-1;max-width:420px;}
+    .cards{grid-template-columns:repeat(2,1fr);}
+    .feature-grid{grid-template-columns:1fr;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+  }
+  @media(max-width:640px){
+    .bar{min-height:60px;flex-wrap:wrap;}
+    nav.main{
+      display:none;width:100%;flex-direction:column;gap:2px;
+      padding-bottom:12px;margin-left:0;
+    }
+    nav.main.open{display:flex;}
+    nav.main a{padding:10px 12px;}
+    .menu-btn{display:block;}
+    .hero{padding:36px 0 28px;}
+    h1{font-size:1.9rem;}
+    .cards{grid-template-columns:1fr;}
+    .prose{padding:24px 20px;}
+    .dl{padding:26px 22px;}
+    section{padding:38px 0;}
+    .badge-float{left:8px;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="w漫画首页">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="64" rx="14" fill="#1b1f3b"/>
+        <path d="M16 20h8l4 16 4-16h8l-8 26h-8z" fill="#ff7a45"/>
+        <circle cx="47" cy="22" r="5" fill="#ffd166"/>
+      </svg>
+      <span class="brand">w漫画</span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">菜单</button>
+    <nav class="main" id="mainNav" aria-label="主导航">
+      <a href="#genres">漫画分类</a>
+      <a href="#shelf">热门推荐</a>
+      <a href="#reading">阅读方式</a>
+      <a href="#faq">常见疑问</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="wrap grid">
+      <div>
+        <span class="eyebrow">在线漫画 · 每日可读</span>
+        <h1 id="heroTitle">w漫画</h1>
+        <p class="lead">w漫画是面向漫画读者的在线阅读平台，把热血、恋爱、奇幻、悬疑等题材集中到一处。打开页面即可按分类浏览作品，也能用关键词查找想看的故事，把「找漫画」和「看漫画」放在同一条路径上。</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#shelf">进入漫画库
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#genres">按分类找</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="frame">
+          <svg viewBox="0 0 400 260" role="img" aria-label="w漫画阅读界面示意插画" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="260" rx="14" fill="#252b52"/>
+            <rect x="24" y="24" width="150" height="212" rx="10" fill="#3a4173"/>
+            <rect x="40" y="42" width="118" height="86" rx="7" fill="#ff7a45" opacity=".9"/>
+            <path d="M40 128 L98 90 L158 128 Z" fill="#ffd166" opacity=".85"/>
+            <circle cx="122" cy="68" r="14" fill="#252b52"/>
+            <rect x="40" y="146" width="96" height="9" rx="4.5" fill="#8f96c4"/>
+            <rect x="40" y="164" width="72" height="9" rx="4.5" fill="#6a719c"/>
+            <rect x="40" y="182" width="108" height="9" rx="4.5" fill="#6a719c"/>
+            <rect x="40" y="200" width="60" height="9" rx="4.5" fill="#6a719c"/>
+            <rect x="196" y="24" width="180" height="68" rx="10" fill="#3a4173"/>
+            <circle cx="222" cy="58" r="16" fill="#ffd166"/>
+            <rect x="250" y="42" width="106" height="9" rx="4.5" fill="#8f96c4"/>
+            <rect x="250" y="60" width="78" height="9" rx="4.5" fill="#6a719c"/>
+            <rect x="196" y="106" width="180" height="68" rx="10" fill="#3a4173"/>
+            <circle cx="222" cy="140" r="16" fill="#ff7a45"/>
+            <rect x="250" y="124" width="106" height="9" rx="4.5" fill="#8f96c4"/>
+            <rect x="250" y="142" width="64" height="9" rx="4.5" fill="#6a719c"/>
+            <rect x="196" y="188" width="180" height="48" rx="10" fill="#ff7a45" opacity=".9"/>
+            <rect x="216" y="206" width="96" height="12" rx="6" fill="#252b52"/>
+          </svg>
+        </div>
+        <div class="badge-float">分类浏览 · 关键词查找</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GENRES + SEARCH -->
+  <section id="genres" aria-labelledby="genresTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">按题材进入</div>
+        <h2 id="genresTitle">w漫画的题材分类</h2>
+        <p>不同读者口味差异很大，w漫画把作品按题材归入清晰入口。点击下方标签可筛选推荐列表，也可以直接输入作品名或题材词进行查找。</p>
+      </div>
+      <div class="chips" id="chipRow" role="group" aria-label="题材筛选">
+        <button class="chip on" data-genre="全部" type="button">全部</button>
+        <button class="chip" data-genre="热血" type="button">热血</button>
+        <button class="chip" data-genre="恋爱" type="button">恋爱</button>
+        <button class="chip" data-genre="奇幻" type="button">奇幻</button>
+        <button class="chip" data-genre="悬疑" type="button">悬疑</button>
+      </div>
+
+      <div class="searchbar">
+        <input id="searchInput" type="search" placeholder="输入作品名或题材，例如：热血、悬疑" aria-label="搜索漫画">
+        <button class="btn btn-primary" id="searchBtn" type="button">搜索</button>
+      </div>
+
+      <div class="cards" id="cardGrid">
+        <article class="card" data-genre="热血" data-name="破晓之刃">
+          <div class="cover">
+            <svg viewBox="0 0 320 132" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="132" fill="#2d3566"/><path d="M0 108 L70 42 L120 92 L180 30 L250 96 L320 52 L320 132 L0 132 Z" fill="#ff7a45"/><circle cx="258" cy="34" r="16" fill="#ffd166"/></svg>
+          </div>
+          <div class="body">
+            <span class="tag">热血</span>
+            <h3>破晓之刃</h3>
+            <div class="meta">少年成长 · 连载体</div>
+            <p>以少年剑士的成长为主线，节奏明快的战斗场面与团队羁绊是主要看点，适合喜欢强情节推进的读者。</p>
+          </div>
+        </article>
+
+        <article class="card" data-genre="恋爱" data-name="午后三号线">
+          <div class="cover">
+            <svg viewBox="0 0 320 132" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="132" fill="#3a4173"/><rect x="26" y="34" width="120" height="78" rx="10" fill="#ffd166"/><path d="M186 96 C206 56 246 56 266 96 Z" fill="#ff7a45"/><circle cx="262" cy="40" r="13" fill="#f7f6f2"/></svg>
+          </div>
+          <div class="body">
+            <span class="tag">恋爱</span>
+            <h3>午后三号线</h3>
+            <div class="meta">都市日常 · 连载中</div>
+            <p>围绕通勤线路上的偶遇展开，用细碎日常推进关系变化，情绪表达克制，适合偏好生活感叙事的读者。</p>
+          </div>
+        </article>
+
+        <article class="card" data-genre="奇幻" data-name="星砂旅人">
+          <div class="cover">
+            <svg viewBox="0 0 320 132" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="132" fill="#252b52"/><circle cx="70" cy="44" r="24" fill="#ffd166" opacity=".9"/><circle cx="210" cy="86" r="34" fill="#ff7a45" opacity=".75"/><circle cx="276" cy="36" r="10" fill="#f7f6f2"/><path d="M0 132 L110 70 L220 132 Z" fill="#3a4173"/></svg>
+          </div>
+          <div class="body">
+            <span class="tag">奇幻</span>
+            <h3>星砂旅人</h3>
+            <div class="meta">架空世界 · 连载中</div>
+            <p>在架空大陆上展开的旅途故事，世界观设定细致，画面以场景与光影见长，适合喜欢沉浸式世界的读者。</p>
+          </div>
+        </article>
+
+        <article class="card" data-genre="悬疑" data-name="第七封信">
+          <div class="cover">
+            <svg viewBox="0 0 320 132" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="132" fill="#1b1f3b"/><rect x="98" y="30" width="124" height="82" rx="8" fill="#3a4173"/><path d="M98 30 L160 76 L222 30" stroke="#ff7a45" stroke-width="6" fill="none"/><circle cx="252" cy="44" r="9" fill="#ffd166"/></svg>
+          </div>
+          <div class="body">
+            <span class="tag">悬疑</span>
+            <h3>第七封信</h3>
+            <div class="meta">推理线索 · 连载中</div>
+            <p>由一系列信件牵出线索的悬疑作品，章节结尾留有推进感，阅读时需要留意画面细节。</p>
+          </div>
+        </article>
+
+        <article class="card" data-genre="热血" data-name="逆风球场">
+          <div class="cover">
+            <svg viewBox="0 0 320 132" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="132" fill="#2d3566"/><circle cx="160" cy="70" r="46" fill="none" stroke="#ff7a45" stroke-width="6"/><path d="M160 24 L160 116 M114 70 L206 70" stroke="#ff7a45" stroke-width="5"/><circle cx="160" cy="70" r="9" fill="#ffd166"/></svg>
+          </div>
+          <div class="body">
+            <span class="tag">热血</span>
+            <h3>逆风球场</h3>
+            <div class="meta">团队竞技 · 连载中</div>
+            <p>以团队配合为核心的运动题材作品，重点落在训练与比赛之间的选择，人物群像较有记忆点。</p>
+          </div>
+        </article>
+
+        <article class="card" data-genre="奇幻" data-name="纸月工坊">
+          <div class="cover">
+            <svg viewBox="0 0 320 132" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="132" fill="#3a4173"/><path d="M60 108 L60 40 L150 76 Z" fill="#ffd166"/><rect x="180" y="42" width="96" height="66" rx="8" fill="#ff7a45" opacity=".9"/><circle cx="228" cy="20" r="10" fill="#f7f6f2"/></svg>
+          </div>
+          <div class="body">
+            <span class="tag">奇幻</span>
+            <h3>纸月工坊</h3>
+            <div class="meta">手作设定 · 连载中</div>
+            <p>以工坊与手作为设定核心，故事围绕修复与创造展开，画面细节丰富，适合慢节奏阅读。</p>
+          </div>
+        </article>
+      </div>
+      <p class="empty-note" id="emptyNote" hidden>没有匹配的作品，换个关键词或点「全部」试试。</p>
+    </div>
+  </section>
+
+  <!-- HOT SHELF -->
+  <section id="shelf" aria-labelledby="shelfTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">热门推荐</div>
+        <h2 id="shelfTitle">w漫画近期可读作品</h2>
+        <p>下面按题材给出几部可读作品，说明只描述作品本身的题材与叙事特点，方便你判断是否合口味。</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="ic" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2571f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 L4 14h6l-1 8 9-12h-6z"/></svg>
+          </div>
+          <div>
+            <h3>强情节作品</h3>
+            <p>《破晓之刃》《逆风球场》这类作品以事件推进为主，单话信息量较大，适合想一口气读下去的读者。</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="ic" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2571f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8.5C20 5 17 3 14 3 10 3 8 6 8 9c0 5 4 7 4 12 3-1 8-4 8-12z"/><circle cx="14" cy="9" r="2.2"/></svg>
+          </div>
+          <div>
+            <h3>情绪向作品</h3>
+            <p>《午后三号线》把关系变化放在日常场景里，节奏舒缓，适合在通勤或睡前分段阅读。</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="ic" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2571f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+          </div>
+          <div>
+            <h3>世界观作品</h3>
+            <p>《星砂旅人》《纸月工坊》重点在设定与场景，画面承担较多叙事功能，适合喜欢沉浸的读者。</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="ic" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2571f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 L21 21"/></svg>
+          </div>
+          <div>
+            <h3>需要细读的作品</h3>
+            <p>《第七封信》把线索散落在画面里，读得快容易漏掉细节，建议留意分镜与对白的对应关系。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats" aria-label="w漫画栏目概览">
+        <div class="stat"><div class="num">5</div><div class="lbl">题材分类</div></div>
+        <div class="stat"><div class="num">6</div><div class="lbl">推荐作品</div></div>
+        <div class="stat"><div class="num">在线</div><div class="lbl">阅读方式</div></div>
+        <div class="stat"><div class="num">持续</div><div class="lbl">更新状态</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- READING -->
+  <section id="reading" aria-labelledby="readingTitle">
+    <div class="wrap">
+      <div class="prose">
+        <div class="kicker" style="font-size:.8rem;letter-spacing:2px;color:var(--accent-deep);font-weight:700;">阅读方式</div>
+        <h2 id="readingTitle">在 w漫画 里怎么找、怎么看</h2>
+        <p><strong>先定题材，再定作品。</strong>w漫画的分类入口把作品按题材归组，读者可以先判断自己此刻想看热血、恋爱、奇幻还是悬疑，再进入对应列表。相比盲目翻页，这条路径更省时间，也更容易找到口味接近的作品。</p>
+        <p><strong>用关键词直接定位。</strong>如果心里已有目标，直接在搜索框输入作品名或题材词即可。w漫画的搜索同时匹配作品名与题材标签，输入「悬疑」会得到悬疑类作品，输入具体作品名则直接落到对应条目。</p>
+        <p><strong>按篇幅安排阅读节奏。</strong>强情节作品适合连续阅读，情绪向与世界观作品则更适合分段。w漫画在推荐区按叙事特点分组，正是为了让读者在开始前就能判断自己的阅读时间是否匹配。</p>
+        <p><strong>留意画面里的信息。</strong>悬疑类作品的线索常藏在分镜与背景中，阅读时放慢速度往往比快速翻页更容易理解情节。w漫画把这类提醒放在作品说明旁，而不是等到读完才发现错过细节。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section aria-labelledby="dlTitle">
+    <div class="wrap">
+      <div class="dl">
+        <div class="txt">
+          <h2 id="dlTitle">把 w漫画 的阅读清单带走</h2>
+          <p>整理当前推荐作品与题材说明，方便离线查看。下载入口将在资源就绪后开放。</p>
+        </div>
+        <a class="btn-dl" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" aria-labelledby="faqTitle">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">常见疑问</div>
+        <h2 id="faqTitle">关于 w漫画 的几点说明</h2>
+      </div>
+
+      <details>
+        <summary>w漫画需要注册才能看吗？</summary>
+        <p>当前页面展示的是作品分类、推荐与阅读说明，浏览这些内容不需要账号。具体作品的阅读权限以实际页面为准。</p>
+      </details>
+      <details>
+        <summary>分类里的作品会一直更新吗？</summary>
+        <p>页面按题材列出可读作品，并标注连载状态。更新节奏由各作品自身安排决定，推荐列表会随内容调整。</p>
+      </details>
+      <details>
+        <summary>搜索支持哪些关键词？</summary>
+        <p>支持作品名与题材词，例如输入「星砂旅人」定位作品，输入「奇幻」筛出该类作品。搜索不区分题材标签的先后顺序。</p>
+      </details>
+      <details>
+        <summary>下载按钮为什么现在点不了？</summary>
+        <p>下载资源尚未就绪，入口已按占位状态处理，避免误点。资源准备好后会替换为可用地址。</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="fbrand">w漫画<span> · 在线漫画阅读</span></div>
+        <p>w漫画把题材分类、作品推荐与阅读说明放在同一页面，帮助读者更快找到想看的故事。页面内容围绕作品本身与阅读方式展开。</p>
+      </div>
+      <nav aria-label="页尾导航">
+        <a href="#genres">漫画分类</a>
+        <a href="#shelf">热门推荐</a>
+        <a href="#reading">阅读方式</a>
+        <a href="#faq">常见疑问</a>
+      </nav>
+    </div>
+    <div class="copy">© w漫画 · 页面内容为作品分类与阅读说明</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var menuBtn=document.getElementById('menuBtn');
+  var nav=document.getElementById('mainNav');
+  menuBtn.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  nav.addEventListener('click',function(e){
+    if(e.target.tagName==='A'&&nav.classList.contains('open')){
+      nav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded','false');
+    }
+  });
+
+  var chips=Array.prototype.slice.call(document.querySelectorAll('#chipRow .chip'));
+  var cards=Array.prototype.slice.call(document.querySelectorAll('#cardGrid .card'));
+  var input=document.getElementById('searchInput');
+  var searchBtn=document.getElementById('searchBtn');
+  var emptyNote=document.getElementById('emptyNote');
+  var activeGenre='全部';
+
+  function apply(){
+    var q=(input.value||'').trim().toLowerCase();
+    var shown=0;
+    cards.forEach(function(card){
+      var g=card.getAttribute('data-genre');
+      var name=(card.getAttribute('data-name')||'').toLowerCase();
+      var text=card.textContent.toLowerCase();
+      var genreOk=(activeGenre==='全部'||g===activeGenre);
+      var queryOk=(!q)||name.indexOf(q)>-1||text.indexOf(q)>-1;
+      var ok=genreOk&&queryOk;
+      card.classList.toggle('hidden',!ok);
+      if(ok)shown++;
+    });
+    emptyNote.hidden=shown>0;
+  }
+
+  chips.forEach(function(chip){
+    chip.addEventListener('click',function(){
+      chips.forEach(function(c){c.classList.remove('on');});
+      chip.classList.add('on');
+      activeGenre=chip.getAttribute('data-genre');
+      apply();
+    });
+  });
+
+  searchBtn.addEventListener('click',apply);
+  input.addEventListener('input',apply);
+  input.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); apply(); }});
+})();
+</script>
+</body>
+  </html>
