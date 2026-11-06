@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>免费动漫官网-免费动漫在线观看_动漫新番全集高清放送</title>
+<meta name="description" content="免费动漫官网为动漫爱好者提供免费动漫在线观看入口：新番连载、经典全集、剧场版专题与追番清单，页面内即可浏览片单、按类型与年份筛选，快速找到想看的动漫。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23131a2b'/%3E%3Ccircle cx='32' cy='30' r='14' fill='none' stroke='%23ff7a59' stroke-width='4'/%3E%3Cpath d='M27 24l12 6-12 6z' fill='%23ffd166'/%3E%3Cpath d='M20 50h24' stroke='%235ad1c8' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#161b26;
+  --ink-soft:#4b5468;
+  --line:#e3e7f0;
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --brand:#ff7a59;
+  --brand-deep:#e8563a;
+  --teal:#18a89b;
+  --gold:#ffc94d;
+  --navy:#131a2b;
+  --radius:16px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+img,svg{display:block;}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 20px;}
+h1,h2,h3{line-height:1.35;margin:0;}
+p{margin:0 0 14px;}
+
+/* ---------- header ---------- */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(19,26,43,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;height:66px;
+}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:17px;letter-spacing:.5px;white-space:nowrap;}
+.logo .mark{width:34px;height:34px;flex:none;}
+.nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.nav a{
+  color:#c6cddd;font-size:14px;padding:8px 12px;border-radius:999px;
+  transition:.2s;
+}
+.nav a:hover{color:#fff;background:rgba(255,255,255,.1);}
+.nav a.cta{
+  background:var(--brand);color:#fff;font-weight:600;padding:8px 16px;
+}
+.nav a.cta:hover{background:var(--brand-deep);}
+
+/* ---------- hero ---------- */
+.hero{
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255,122,89,.28), transparent 46%),
+    radial-gradient(circle at 12% 88%, rgba(24,168,155,.24), transparent 52%),
+    var(--navy);
+  color:#fff;
+  padding:56px 0 60px;
+  overflow:hidden;
+}
+.hero-inner{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;
+}
+.hero .kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--gold);letter-spacing:1px;
+  border:1px solid rgba(255,201,77,.4);border-radius:999px;
+  padding:4px 14px;margin-bottom:18px;
+}
+.hero h1{
+  font-size:40px;font-weight:800;letter-spacing:1px;margin-bottom:16px;
+}
+.hero h1 span{color:var(--brand);}
+.hero .lead{
+  color:#c6cddd;font-size:16px;max-width:520px;margin-bottom:26px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:999px;font-size:15px;font-weight:600;
+  transition:.2s;border:1px solid transparent;
+}
+.btn-main{background:var(--brand);color:#fff;}
+.btn-main:hover{background:var(--brand-deep);}
+.btn-ghost{border-color:rgba(255,255,255,.35);color:#fff;}
+.btn-ghost:hover{background:rgba(255,255,255,.12);}
+.hero-stats{
+  display:flex;gap:26px;margin-top:32px;flex-wrap:wrap;
+}
+.hero-stats div strong{display:block;font-size:22px;color:var(--gold);}
+.hero-stats div span{font-size:13px;color:#a7b0c4;}
+
+.hero-art{
+  position:relative;
+  display:flex;justify-content:center;
+}
+.hero-art .frame{
+  width:100%;max-width:340px;
+  background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.04));
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:22px;padding:18px;
+}
+.hero-art .frame svg{width:100%;height:auto;}
+.hero-art .tag{
+  position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:#3a2b00;font-size:13px;font-weight:700;
+  padding:6px 16px;border-radius:999px;white-space:nowrap;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+}
+
+/* ---------- section base ---------- */
+section{padding:58px 0;}
+.sec-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:16px;margin-bottom:26px;flex-wrap:wrap;
+}
+.sec-head h2{
+  font-size:26px;font-weight:800;letter-spacing:.5px;
+  position:relative;padding-left:16px;
+}
+.sec-head h2::before{
+  content:"";position:absolute;left:0;top:6px;bottom:6px;width:5px;
+  border-radius:4px;background:var(--brand);
+}
+.sec-head p{color:var(--ink-soft);font-size:14px;margin:0;max-width:560px;}
+.sec-head .more{
+  font-size:14px;color:var(--brand-deep);font-weight:600;
+}
+.sec-head .more:hover{text-decoration:underline;}
+
+/* ---------- filter ---------- */
+.filter-bar{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+  margin-bottom:26px;
+}
+.filter-bar label{font-size:14px;color:var(--ink-soft);font-weight:600;}
+.filter-bar select,.filter-bar input{
+  font:inherit;font-size:14px;padding:8px 12px;border-radius:10px;
+  border:1px solid var(--line);background:#fbfcfe;color:var(--ink);min-width:130px;
+}
+.filter-bar input{min-width:180px;flex:1;}
+.filter-bar select:focus,.filter-bar input:focus{outline:2px solid rgba(255,122,89,.4);border-color:var(--brand);}
+.filter-count{font-size:13px;color:var(--ink-soft);margin-left:auto;}
+
+/* ---------- anime grid ---------- */
+.grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+}
+.anime-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .2s, box-shadow .2s;
+}
+.anime-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(22,27,38,.1);}
+.anime-card.hidden{display:none;}
+.thumb{
+  aspect-ratio:16/9;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#1f2940,#131a2b);
+}
+.thumb svg{width:100%;height:100%;}
+.thumb .badge{
+  position:absolute;top:10px;left:10px;
+  font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;
+  background:rgba(19,26,43,.78);color:#fff;
+}
+.thumb .badge.new{background:var(--brand);}
+.thumb .badge.hot{background:var(--teal);}
+.card-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1;}
+.card-body h3{font-size:17px;font-weight:700;margin-bottom:6px;}
+.card-meta{font-size:13px;color:var(--ink-soft);margin-bottom:10px;}
+.card-body p{font-size:14px;color:var(--ink-soft);margin-bottom:14px;flex:1;}
+.card-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.tag-pill{
+  font-size:12px;padding:2px 10px;border-radius:999px;
+  background:#f1f3f9;color:#59617a;
+}
+.card-link{
+  font-size:14px;font-weight:700;color:var(--brand-deep);
+  display:inline-flex;align-items:center;gap:6px;
+}
+.card-link:hover{gap:10px;}
+
+/* ---------- watch order list ---------- */
+.watch-block{
+  display:grid;grid-template-columns:1fr 1fr;gap:22px;
+}
+.watch-item{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 24px;display:flex;gap:16px;
+}
+.watch-item .num{
+  flex:none;width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(140deg,var(--brand),#ffab8f);
+  color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+}
+.watch-item h3{font-size:16px;margin-bottom:6px;}
+.watch-item p{font-size:14px;color:var(--ink-soft);margin:0;}
+
+/* ---------- topic strip ---------- */
+.topics{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+}
+.topic{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 18px;transition:.2s;
+}
+.topic:hover{border-color:var(--brand);}
+.topic .ico{
+  width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:#fff1ec;margin-bottom:14px;
+}
+.topic h3{font-size:15px;margin-bottom:6px;}
+.topic p{font-size:13px;color:var(--ink-soft);margin:0;}
+
+/* ---------- article / about ---------- */
+.about-wrap{
+  display:grid;grid-template-columns:1.4fr .6fr;gap:36px;align-items:start;
+}
+.about-text h2{font-size:26px;font-weight:800;margin-bottom:16px;}
+.about-text h3{font-size:17px;margin:22px 0 8px;color:var(--ink);}
+.about-text p{color:var(--ink-soft);font-size:15px;}
+.about-text strong{color:var(--ink);}
+.side-note{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;
+}
+.side-note h3{font-size:15px;margin-bottom:12px;}
+.side-note ul{margin:0;padding-left:18px;color:var(--ink-soft);font-size:14px;}
+.side-note li{margin-bottom:8px;}
+.side-note .dl{
+  margin-top:18px;display:block;text-align:center;
+  background:#eef0f6;color:#8b93a8;font-size:14px;font-weight:600;
+  padding:10px 16px;border-radius:999px;
+  pointer-events:none;
+}
+
+/* ---------- footer ---------- */
+.site-footer{
+  background:var(--navy);color:#a7b0c4;padding:42px 0 26px;margin-top:20px;
+}
+.footer-top{
+  display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;
+  padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.1);
+}
+.footer-brand{max-width:360px;}
+.footer-brand .logo{margin-bottom:12px;}
+.footer-brand p{font-size:13px;color:#8b94a8;margin:0;}
+.footer-links{display:flex;gap:56px;flex-wrap:wrap;}
+.footer-col h4{font-size:14px;color:#e6e9f2;margin:0 0 12px;font-weight:700;}
+.footer-col a{display:block;font-size:13px;color:#8b94a8;margin-bottom:8px;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{
+  padding-top:20px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:12px;color:#6f788c;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:960px){
+  .hero-inner{grid-template-columns:1fr;gap:36px;}
+  .hero-art{order:-1;max-width:300px;margin:0 auto;}
+  .hero h1{font-size:32px;}
+  .grid{grid-template-columns:repeat(2,1fr);}
+  .topics{grid-template-columns:repeat(2,1fr);}
+  .about-wrap{grid-template-columns:1fr;}
+  .watch-block{grid-template-columns:1fr;}
+}
+@media (max-width:640px){
+  .header-inner{height:auto;flex-direction:column;align-items:flex-start;padding:12px 0;gap:8px;}
+  .nav{gap:2px;}
+  .nav a{font-size:13px;padding:6px 9px;}
+  .hero{padding:36px 0 44px;}
+  .hero h1{font-size:26px;}
+  .hero .lead{font-size:15px;}
+  .hero-stats{gap:18px;}
+  section{padding:40px 0;}
+  .sec-head h2{font-size:22px;}
+  .grid{grid-template-columns:1fr;}
+  .topics{grid-template-columns:1fr;}
+  .filter-bar{padding:14px;gap:10px;}
+  .filter-bar input{min-width:100%;}
+  .filter-count{margin-left:0;}
+  .footer-links{gap:30px;}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="16" fill="#ff7a59"/>
+        <circle cx="32" cy="29" r="13" fill="none" stroke="#fff" stroke-width="4"/>
+        <path d="M28 23l11 6-11 6z" fill="#ffd166"/>
+        <path d="M20 49h24" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      免费动漫官网
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#lists">动漫片单</a>
+      <a href="#howto">追番路线</a>
+      <a href="#topics">分类专题</a>
+      <a href="#about">关于本站</a>
+      <a class="cta" href="#lists">开始观看</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <div class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <div class="kicker">新番连载 · 经典全集 · 剧场版专题</div>
+        <h1>免费动漫官网</h1>
+        <p class="lead">免费动漫官网把新番、经典全集与剧场版专题收进同一张片单。想补一部老番，或追本季更新，都可以从下面的筛选区按类型、年份和关键词找到目标，再进入对应剧集页。</p>
+        <div class="hero-actions">
+          <a class="btn btn-main" href="#lists">浏览动漫片单</a>
+          <a class="btn btn-ghost" href="#howto">查看追番路线</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>3类</strong><span>新番 / 全集 / 剧场版</span></div>
+          <div><strong>6部</strong><span>本期精选片单</span></div>
+          <div><strong>4个</strong><span>分类专题入口</span></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="frame">
+          <svg viewBox="0 0 320 200" role="img" aria-label="动漫播放场景插画">
+            <rect x="0" y="0" width="320" height="200" rx="14" fill="#0e1524"/>
+            <rect x="18" y="18" width="284" height="150" rx="10" fill="#1b2438"/>
+            <circle cx="160" cy="86" r="30" fill="none" stroke="#ff7a59" stroke-width="5"/>
+            <path d="M150 71l25 15-25 15z" fill="#ffd166"/>
+            <rect x="42" y="136" width="70" height="8" rx="4" fill="#3a4560"/>
+            <rect x="42" y="150" width="120" height="6" rx="3" fill="#2a3348"/>
+            <circle cx="268" cy="46" r="10" fill="#18a89b"/>
+            <rect x="250" y="70" width="36" height="6" rx="3" fill="#3a4560"/>
+          </svg>
+        </div>
+        <span class="tag">按类型与年份快速找番</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 片单 -->
+  <section id="lists">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>本期动漫片单</h2>
+          <p>片单覆盖连载新番、完结全集与剧场版三类内容，卡片标注类型、年份与看点，方便在免费动漫官网里直接挑选下一步要看的作品。</p>
+        </div>
+        <a class="more" href="#topics">按专题浏览 →</a>
+      </div>
+
+      <div class="filter-bar">
+        <label for="f-type">类型</label>
+        <select id="f-type">
+          <option value="all">全部类型</option>
+          <option value="热血">热血</option>
+          <option value="奇幻">奇幻</option>
+          <option value="日常">日常</option>
+          <option value="悬疑">悬疑</option>
+        </select>
+        <label for="f-year">年份</label>
+        <select id="f-year">
+          <option value="all">全部年份</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+        </select>
+        <input id="f-key" type="search" placeholder="输入片名关键词，如「星海」" aria-label="按片名搜索">
+        <span class="filter-count" id="f-count">共 6 部</span>
+      </div>
+
+      <div class="grid" id="anime-grid">
+
+        <article class="anime-card" data-type="热血" data-year="2024" data-name="星海航线 第二季">
+          <div class="thumb">
+            <svg viewBox="0 0 320 180" aria-hidden="true">
+              <rect width="320" height="180" fill="#1b2440"/>
+              <circle cx="250" cy="52" r="26" fill="#ff7a59" opacity=".85"/>
+              <path d="M0 140l60-42 52 30 58-46 66 40 84-30v88H0z" fill="#26355c"/>
+              <path d="M40 150l70-30 60 22 80-26 70 20v44H40z" fill="#18a89b" opacity=".55"/>
+            </svg>
+            <span class="badge new">连载中</span>
+          </div>
+          <div class="card-body">
+            <h3>星海航线 第二季</h3>
+            <div class="card-meta">2024 · 热血 · 连载更新</div>
+            <p>航海少年团的续篇故事，本季围绕新航线展开。适合喜欢群像成长与冒险推进的观众，从第一季结尾接续观看更顺畅。</p>
+            <div class="card-tags"><span class="tag-pill">冒险</span><span class="tag-pill">群像</span></div>
+            <a class="card-link" href="#lists">查看剧集 →</a>
+          </div>
+        </article>
+
+        <article class="anime-card" data-type="奇幻" data-year="2024" data-name="月落幻想录">
+          <div class="thumb">
+            <svg viewBox="0 0 320 180" aria-hidden="true">
+              <rect width="320" height="180" fill="#221a33"/>
+              <circle cx="160" cy="86" r="42" fill="none" stroke="#ffc94d" stroke-width="6"/>
+              <path d="M150 68l26 18-26 18z" fill="#ff7a59"/>
+              <circle cx="60" cy="40" r="3" fill="#fff" opacity=".7"/>
+              <circle cx="260" cy="130" r="3" fill="#fff" opacity=".6"/>
+              <circle cx="220" cy="34" r="2" fill="#fff" opacity=".5"/>
+            </svg>
+            <span class="badge hot">高热</span>
+          </div>
+          <div class="card-body">
+            <h3>月落幻想录</h3>
+            <div class="card-meta">2024 · 奇幻 · 连载更新</div>
+            <p>以魔法学院为舞台的奇幻作品，主线设定清楚，前几集节奏偏稳。适合想找设定完整、世界观看点足的新番。</p>
+            <div class="card-tags"><span class="tag-pill">魔法</span><span class="tag-pill">成长</span></div>
+            <a class="card-link" href="#lists">查看剧集 →</a>
+          </div>
+        </article>
+
+        <article class="anime-card" data-type="日常" data-year="2023" data-name="午后三点半的我们">
+          <div class="thumb">
+            <svg viewBox="0 0 320 180" aria-hidden="true">
+              <rect width="320" height="180" fill="#2a2a20"/>
+              <circle cx="80" cy="60" r="30" fill="#ffc94d" opacity=".9"/>
+              <rect x="0" y="120" width="320" height="60" fill="#3d4432"/>
+              <path d="M120 120c0-26 18-44 40-44s40 18 40 44z" fill="#ff7a59" opacity=".7"/>
+              <rect x="230" y="96" width="46" height="24" rx="6" fill="#18a89b"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3>午后三点半的我们</h3>
+            <div class="card-meta">2023 · 日常 · 全集完结</div>
+            <p>校园日常群像，单集结构轻快，适合一次看几集放松。已完结，可以从头顺看，也可以先挑感兴趣的单集试看。</p>
+            <div class="card-tags"><span class="tag-pill">校园</span><span class="tag-pill">治愈</span></div>
+            <a class="card-link" href="#lists">查看剧集 →</a>
+          </div>
+        </article>
+
+        <article class="anime-card" data-type="悬疑" data-year="2023" data-name="静默档案室">
+          <div class="thumb">
+            <svg viewBox="0 0 320 180" aria-hidden="true">
+              <rect width="320" height="180" fill="#161d2a"/>
+              <rect x="46" y="40" width="90" height="110" rx="6" fill="#26324a"/>
+              <rect x="150" y="64" width="70" height="86" rx="6" fill="#1e2940"/>
+              <circle cx="250" cy="70" r="22" fill="none" stroke="#ff7a59" stroke-width="6"/>
+              <path d="M266 86l20 20" stroke="#ff7a59" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+            <span class="badge">完结</span>
+          </div>
+          <div class="card-body">
+            <h3>静默档案室</h3>
+            <div class="card-meta">2023 · 悬疑 · 全集完结</div>
+            <p>围绕旧档案展开的推理作品，线索铺陈较密，建议按顺序观看。适合喜欢边看边推理、不急于揭底的观众。</p>
+            <div class="card-tags"><span class="tag-pill">推理</span><span class="tag-pill">单元剧</span></div>
+            <a class="card-link" href="#lists">查看剧集 →</a>
+          </div>
+        </article>
+
+        <article class="anime-card" data-type="奇幻" data-year="2022" data-name="风之织匠">
+          <div class="thumb">
+            <svg viewBox="0 0 320 180" aria-hidden="true">
+              <rect width="320" height="180" fill="#132a2a"/>
+              <path d="M0 130c60-46 110-10 160-40s110 6 160-30v120H0z" fill="#1d4444"/>
+              <path d="M0 148c70-30 120 4 170-18s90 2 150-16v66H0z" fill="#18a89b" opacity=".6"/>
+              <circle cx="252" cy="46" r="20" fill="#ffc94d" opacity=".85"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3>风之织匠</h3>
+            <div class="card-meta">2022 · 奇幻 · 全集完结</div>
+            <p>旅行与手工艺结合的中篇故事，画面风格偏清爽。已完结，适合周末一次看完，也适合作为奇幻题材入门。</p>
+            <div class="card-tags"><span class="tag-pill">旅行</span><span class="tag-pill">美术</span></div>
+            <a class="card-link" href="#lists">查看剧集 →</a>
+          </div>
+        </article>
+
+        <article class="anime-card" data-type="热血" data-year="2022" data-name="拳台之外">
+          <div class="thumb">
+            <svg viewBox="0 0 320 180" aria-hidden="true">
+              <rect width="320" height="180" fill="#2a1a1a"/>
+              <circle cx="160" cy="92" r="46" fill="none" stroke="#ff7a59" stroke-width="7"/>
+              <path d="M146 72l30 20-30 20z" fill="#ffc94d"/>
+              <rect x="20" y="150" width="280" height="6" rx="3" fill="#4a2c2c"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3>拳台之外</h3>
+            <div class="card-meta">2022 · 热血 · 全集完结</div>
+            <p>以竞技训练为主线的成长故事，比赛段落密集。全集已完结，可连续追完；对竞技题材感兴趣的观众可从第一集看起。</p>
+            <div class="card-tags"><span class="tag-pill">竞技</span><span class="tag-pill">成长</span></div>
+            <a class="card-link" href="#lists">查看剧集 →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 追番路线 -->
+  <section id="howto">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>三步追番路线</h2>
+          <p>第一次来免费动漫官网，可以按下面的顺序走：先定方向，再看片单，最后建立自己的追番清单，减少在列表里反复翻找的时间。</p>
+        </div>
+      </div>
+      <div class="watch-block">
+        <div class="watch-item">
+          <div class="num">1</div>
+          <div>
+            <h3>先确定题材与篇幅</h3>
+            <p>想轻松看就选日常或治愈向，想连着追就挑连载新番，想一口气看完则优先选已完结全集。先定这两项，再进片单筛选。</p>
+          </div>
+        </div>
+        <div class="watch-item">
+          <div class="num">2</div>
+          <div>
+            <h3>用筛选缩小范围</h3>
+            <p>在上方片单里按类型、年份或片名关键词过滤，剩余卡片会即时更新，并显示当前匹配数量，避免逐页翻找。</p>
+          </div>
+        </div>
+        <div class="watch-item">
+          <div class="num">3</div>
+          <div>
+            <h3>按季与集序观看</h3>
+            <p>多季作品从第一季第一集开始，连载中作品按更新顺序追；剧场版单独成篇，可放在正篇间隙观看，不影响主线理解。</p>
+          </div>
+        </div>
+        <div class="watch-item">
+          <div class="num">4</div>
+          <div>
+            <h3>整理自己的追番清单</h3>
+            <p>把在看的、想补的和看完的分别记下，下次进入免费动漫官网时先看清单，再决定补旧番还是追新番。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 分类专题 -->
+  <section id="topics">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>分类专题</h2>
+          <p>按观看场景划分的四个入口，每个专题对应一种常见需求，点进去即可看到该方向下的片单与推荐顺序。</p>
+        </div>
+      </div>
+      <div class="topics">
+        <a class="topic" href="#lists">
+          <div class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff7a59" stroke-width="2" stroke-linecap="round">
+              <path d="M12 3v18M5 8l7-5 7 5"/>
+            </svg>
+          </div>
+          <h3>本季新番</h3>
+          <p>正在连载、按周更新的作品，适合想跟着进度追的观众。</p>
+        </a>
+        <a class="topic" href="#lists">
+          <div class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#18a89b" stroke-width="2" stroke-linecap="round">
+              <rect x="3" y="4" width="18" height="16" rx="3"/>
+              <path d="M8 9h8M8 13h5"/>
+            </svg>
+          </div>
+          <h3>完结全集</h3>
+          <p>已完结作品集中入口，适合一次看完，不必等更新。</p>
+        </a>
+        <a class="topic" href="#lists">
+          <div class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffc94d" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M10 8l6 4-6 4z"/>
+            </svg>
+          </div>
+          <h3>剧场版专题</h3>
+          <p>独立成篇的剧场版作品，单片时长完整，适合空闲时间观看。</p>
+        </a>
+        <a class="topic" href="#lists">
+          <div class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#59617a" stroke-width="2" stroke-linecap="round">
+              <path d="M4 19V7l6-3v15M14 19V9l6-3v13"/>
+            </svg>
+          </div>
+          <h3>经典补番</h3>
+          <p>口碑积累较多的旧作，按推荐顺序补齐，理解剧情更顺。</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section id="about">
+    <div class="wrap about-wrap">
+      <div class="about-text">
+        <h2>关于免费动漫官网</h2>
+        <p>免费动漫官网是一个面向动漫观众的片单型浏览页面，重点不在堆砌列表，而在于把「看什么、从哪看起、按什么顺序看」这三件事讲清楚。页面内的片单、专题与追番路线互相配合，帮助初次访问的观众快速建立自己的观看计划。</p>
+        <h3>适合哪些访问场景</h3>
+        <p>如果你只想找一部下饭番，可以从日常与治愈方向的卡片入手；如果你想追本季更新，优先看标注「连载中」的作品；如果你想一次性补完一部剧，则筛选「全集完结」标签。三类需求在同一个页面里各自有对应入口。</p>
+        <h3>片单如何组织</h3>
+        <p>每张动漫卡片包含片名、年份、类型、简短看点与标签，正文描述只说明观看顺序与题材特征，不夸大作品表现。免费动漫官网的筛选区按类型、年份与关键词组合过滤，匹配数量会随条件变化即时显示。</p>
+        <h3>观看顺序的建议</h3>
+        <p>多季作品建议按季、按集顺序观看；单元剧可以跳看单集；剧场版与正篇相对独立，放在正篇间隙观看即可。把顺序理清之后，再回到片单挑选下一部，比反复翻列表更省时间。</p>
+      </div>
+      <aside class="side-note">
+        <h3>快速提示</h3>
+        <ul>
+          <li>筛选支持类型、年份与片名关键词组合</li>
+          <li>连载中作品每周更新，注意集数变化</li>
+          <li>全集完结作品适合连续观看</li>
+          <li>剧场版单片独立，不依赖正篇进度</li>
+        </ul>
+        <a class="dl" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载追番清单</a>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="#top">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="16" fill="#ff7a59"/>
+            <circle cx="32" cy="29" r="13" fill="none" stroke="#fff" stroke-width="4"/>
+            <path d="M28 23l11 6-11 6z" fill="#ffd166"/>
+            <path d="M20 49h24" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          免费动漫官网
+        </a>
+        <p>以片单、专题与观看顺序为核心的动漫浏览页面，帮助观众更快决定下一部看什么。</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>浏览</h4>
+          <a href="#lists">动漫片单</a>
+          <a href="#howto">追番路线</a>
+          <a href="#topics">分类专题</a>
+        </div>
+        <div class="footer-col">
+          <h4>内容</h4>
+          <a href="#topics">本季新番</a>
+          <a href="#topics">完结全集</a>
+          <a href="#topics">剧场版专题</a>
+        </div>
+        <div class="footer-col">
+          <h4>说明</h4>
+          <a href="#about">关于本站</a>
+          <a href="#lists">筛选方法</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>免费动漫官网 · 动漫片单与观看顺序浏览页</span>
+      <span>片单信息随更新调整，以页面展示为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var typeSel = document.getElementById('f-type');
+  var yearSel = document.getElementById('f-year');
+  var keyInput = document.getElementById('f-key');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#anime-grid .anime-card'));
+  var count = document.getElementById('f-count');
+
+  function apply(){
+    var t = typeSel.value, y = yearSel.value, k = keyInput.value.trim().toLowerCase();
+    var n = 0;
+    cards.forEach(function(card){
+      var okType = (t === 'all' || card.dataset.type === t);
+      var okYear = (y === 'all' || card.dataset.year === y);
+      var okKey = (!k || card.dataset.name.toLowerCase().indexOf(k) !== -1);
+      var show = okType && okYear && okKey;
+      card.classList.toggle('hidden', !show);
+      if(show) n++;
+    });
+    count.textContent = '共 ' + n + ' 部';
+  }
+
+  typeSel.addEventListener('change', apply);
+  yearSel.addEventListener('change', apply);
+  keyInput.addEventListener('input', apply);
+  apply();
+})();
+</script>
+
+</body>
+              </html>
